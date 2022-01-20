@@ -1,29 +1,10 @@
-'use strict'
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
+import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb'
+import { httpResponse } from './src/helpers.js'
 
-module.exports.writeEntry = async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'you did it my good sir.',
-        input: event,
-      },
-      null,
-      2
-    ),
-  }
+const ddbClient = new DynamoDBClient()
+const ddbDocClient = DynamoDBDocumentClient.from(ddbClient)
+
+export async function writeEntry(event) {
+  return httpResponse(200, 'It seems to be working.')
 }
-
-//module.exports.hello = async (event) => {
-//return {
-//statusCode: 200,
-//body: JSON.stringify(
-//{
-//message: 'Go Serverless v2.0! Your function executed successfully!',
-//input: event,
-//},
-//null,
-//2
-//),
-//}
-//}

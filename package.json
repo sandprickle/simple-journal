@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "description": "Simple API for storing entries with timestamps",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "deploy": "npx serverless deploy"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sandprickle/work-journal"
+    "url": "https://github.com/sandprickle/simple-journal"
   },
   "author": "Bryce Miller",
   "license": "MIT",
   "devDependencies": {
-    "serverless": "^2.72.0"
+    "serverless": "^3.0.0-pre.a3d30e94"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.47.0",
+    "@aws-sdk/lib-dynamodb": "^3.47.0",
+    "jest": "^27.4.7"
   }
 }
