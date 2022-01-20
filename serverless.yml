@@ -31,8 +31,8 @@ provider:
             - dynamodb:ConditionCheckItem
 
 functions:
-  writeEntry: 
-    handler: handler.writeEntry
+  createEntry: 
+    handler: src/handler.createEntry
     events: 
       - httpApi:
           path: /entries
