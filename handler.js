@@ -1,6 +1,6 @@
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
-import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb'
-import { httpResponse } from './src/helpers.js'
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb')
+const { DynamoDBDocumentClient, PutCommand } = require('@aws-sdk/lib-dynamodb')
+const { httpResponse } = require('./src/helpers.js')
 
 const ddbClient = new DynamoDBClient()
 const ddbDocClient = DynamoDBDocumentClient.from(ddbClient)
