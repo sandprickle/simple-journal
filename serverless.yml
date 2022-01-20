@@ -1,0 +1,61 @@
+org: sandprickle
+app: personal-journal
+service: journal-api
+frameworkVersion: '2 || 3'
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+  architecture: arm64
+
+  environment:
+    DYNAMODB_TABLE: '${self:service}-${sls:stage}'
+  
+  iam:
+    role:
+      name: ${self:service}-role
+      statements:
+        - Effect: 'Allow'
+          Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+          Action: 
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:BatchWriteItem
+            - dynamodb:GetItem
+            - dynamodb:BatchGetItem
+            - dynamodb:Scan
+            - dynamodb:Query
+            - dynamodb:ConditionCheckItem
+
+functions:
+  writeEntry: 
+    handler: handler.writeEntry
+    events: 
+      - httpApi:
+          path: /entries
+          method: post
+
+resources:
+  Resources:
+    entriesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: journalId
+            AttributeType: S
+          - AttributeName: timestamp
+            AttributeType: S
+          - AttributeName: entry
+            AttributeType: S
+        KeySchema:
+          - AttributeName: journalId
+            KeyType: HASH
+          - AttributeName: timestamp
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
