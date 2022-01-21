@@ -1,4 +1,4 @@
-const { httpResponse } = require('../src/helpers.js')
+import { httpResponse } from '../src/helpers.ts'
 
 test('HTTP Responses formatted Correctly', () => {
   const result = httpResponse(200, 'Test Message')
