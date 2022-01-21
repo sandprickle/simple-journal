@@ -1,7 +1,7 @@
 import { httpResponse, validateEntry } from './helpers'
 import { storeEntry } from './db'
 
-const createEntry = async function createNewJournalEntry(event: any) {
+export const createEntry = async (event: any) => {
   return validateEntry(event.body)
     .then((entry) => storeEntry(entry))
     .catch((err) => {

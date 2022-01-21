@@ -7,8 +7,13 @@ const journalEntrySchema = yup
   })
   .noUnknown()
 
-export interface JournalEntry
-  extends yup.InferType<typeof journalEntrySchema> {}
+//export interface JournalEntry
+//extends yup.InferType<typeof journalEntrySchema> {}
+
+export interface JournalEntry {
+  journalId: string
+  contents: string
+}
 
 export const httpResponse = (code: number, message: string) => {
   return {

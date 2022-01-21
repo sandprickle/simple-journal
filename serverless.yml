@@ -57,3 +57,6 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 10
           WriteCapacityUnits: 10
+
+plugins:
+  - serverless-plugin-typescript
