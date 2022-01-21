@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5"
+    "target": "es6",
+    "strict": true
   },
   "extends": "@tsconfig/node14/tsconfig.json",
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", ".serverless"],
   "include": ["src/**/*"]
 }
