@@ -12,7 +12,7 @@ provider:
 
   environment:
     DYNAMODB_TABLE: '${self:service}-${sls:stage}'
-    AWS_REGION: '${self:provider.region}'
+    REGION: '${self:provider.region}'
   
   iam:
     role:

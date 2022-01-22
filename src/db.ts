@@ -9,7 +9,7 @@ import {
 
 const ddbDocClient = DynamoDBDocumentClient.from(
   new DynamoDBClient({
-    region: process.env.AWS_REGION,
+    region: process.env.REGION,
   })
 )
 
@@ -22,10 +22,10 @@ export const writeEntry = (entry: JournalEntry) => {
   )
 }
 
-export const queryAllEntries = (journalId: string) => {
-  return ddbDocClient.send(
-    new QueryCommand({
-      TableName: process.env.DYNAMODB_TABLE,
-    })
-  )
-}
+//export const queryAllEntries = (journalId: string) => {
+//return ddbDocClient.send(
+//new QueryCommand({
+//TableName: process.env.DYNAMODB_TABLE,
+//})
+//)
+//}
