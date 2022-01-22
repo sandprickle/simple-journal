@@ -8,4 +8,4 @@ export interface JournalEntry {
 
 export const storeEntry = (entry: JournalEntry) => db.writeEntry(entry)
 
-//export const getEntries = (journalId: string) => db.queryAllEntries(journalId)
+export const getEntries = (journalId: string) => db.queryAllEntries(journalId)

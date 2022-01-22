@@ -22,10 +22,14 @@ export const writeEntry = (entry: JournalEntry) => {
   )
 }
 
-//export const queryAllEntries = (journalId: string) => {
-//return ddbDocClient.send(
-//new QueryCommand({
-//TableName: process.env.DYNAMODB_TABLE,
-//})
-//)
-//}
+export const queryAllEntries = (journalId: string) => {
+  const params = {
+    TableName: process.env.DYNAMODB_TABLE,
+    ExpressionAttributeValues: {
+      ':id': journalId,
+    },
+    KeyConditionExpression: 'journalId = :id',
+    //FilterExpression: '',
+  }
+  return ddbDocClient.send(new QueryCommand(params))
+}

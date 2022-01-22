@@ -32,12 +32,20 @@ provider:
             - dynamodb:ConditionCheckItem
 
 functions:
+
   createEntry: 
     handler: src/handler.createEntry
     events: 
       - httpApi:
           path: /entries
           method: post
+
+  getJournalEntries: 
+    handler: src/handler.getJournalEntries
+    events: 
+      - httpApi:
+          path: /entries
+          method: get
 
 resources:
   Resources:
