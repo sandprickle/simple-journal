@@ -3,7 +3,7 @@ import { httpResponse, validateEntry } from './helpers'
 import { storeEntry } from './journal'
 
 export const createEntry = async (event: any) => {
-  return validateEntry(event.body)
+  return validateEntry(JSON.parse(event.body))
     .then((entry) => storeEntry(entry))
     .catch((err) => {
       console.error(err)
