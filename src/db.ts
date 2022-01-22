@@ -1,18 +1,31 @@
 import 'dotenv/config'
-import { JournalEntry } from './helpers'
+import { JournalEntry } from './journal'
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
-import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb'
+import {
+  DynamoDBDocumentClient,
+  PutCommand,
+  QueryCommand,
+} from '@aws-sdk/lib-dynamodb'
 
-const ddbDocClient = DynamoDBDocumentClient.from(new DynamoDBClient({}))
-
-export const storeEntry = (entry: JournalEntry) => {
-  const table = process.env.DYNAMODB_TABLE || 'test'
-  const put = new PutCommand({
-    TableName: table,
-    Item: {
-      timestamp: new Date().toISOString(),
-      ...entry,
-    },
+const ddbDocClient = DynamoDBDocumentClient.from(
+  new DynamoDBClient({
+    region: process.env.AWS_REGION,
   })
-  return ddbDocClient.send(put)
+)
+
+export const writeEntry = (entry: JournalEntry) => {
+  return ddbDocClient.send(
+    new PutCommand({
+      TableName: process.env.DYNAMODB_TABLE,
+      Item: entry,
+    })
+  )
+}
+
+export const queryAllEntries = (journalId: string) => {
+  return ddbDocClient.send(
+    new QueryCommand({
+      TableName: process.env.DYNAMODB_TABLE,
+    })
+  )
 }

@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { httpResponse, validateEntry } from './helpers'
-import { storeEntry } from './db'
+import { storeEntry } from './journal'
 
 export const createEntry = async (event: any) => {
   return validateEntry(event.body)
