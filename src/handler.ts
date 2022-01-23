@@ -37,10 +37,13 @@ const validateJournalId = (journalId: string) => {
 // HANDLERS
 
 export const createEntry = async (event: any) => {
+  console.log(event)
+
   return validateEntry(JSON.parse(event.body))
     .then((entry) => storeEntry(entry))
     .catch((err) => {
       console.error(err)
+
       if (err.name && err.name === 'ValidationError')
         return httpResponse(400, JSON.stringify(err.errors))
       else return httpResponse(500, 'Yo something wonky happened')
@@ -48,10 +51,13 @@ export const createEntry = async (event: any) => {
 }
 
 export const getJournalEntries = async (event: any) => {
+  console.log(event)
+
   return validateJournalId(JSON.parse(event.body).journalId)
     .then((journalId) => getEntries(journalId))
     .catch((err) => {
       console.error(err)
+
       if (err.name && err.name === 'ValidationError')
         return httpResponse(400, JSON.stringify(err.errors))
       else return httpResponse(500, 'Yo womething wonky happened')
