@@ -53,7 +53,7 @@ export const createEntry = async (event: any) => {
 export const getJournalEntries = async (event: any) => {
   console.log(event)
 
-  return validateJournalId(JSON.parse(event.body).journalId)
+  return validateJournalId(event.query.journal)
     .then((journalId) => getEntries(journalId))
     .catch((err) => {
       console.error(err)
