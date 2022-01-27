@@ -13,14 +13,14 @@ provider:
   environment:
     DYNAMODB_TABLE: '${self:service}-${sls:stage}'
     REGION: '${self:provider.region}'
-  
+
   iam:
     role:
       name: ${self:service}-role
       statements:
         - Effect: 'Allow'
-          Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
-          Action: 
+          Resource: 'arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}'
+          Action:
             - dynamodb:PutItem
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
@@ -32,17 +32,16 @@ provider:
             - dynamodb:ConditionCheckItem
 
 functions:
-
-  createEntry: 
+  createEntry:
     handler: src/handler.createEntry
-    events: 
+    events:
       - httpApi:
           path: /entries
           method: post
 
-  getJournalEntries: 
+  getJournalEntries:
     handler: src/handler.getJournalEntries
-    events: 
+    events:
       - httpApi:
           path: /entries
           method: get
@@ -57,7 +56,7 @@ resources:
           - AttributeName: journalId
             AttributeType: S
           - AttributeName: timestamp
-            AttributeType: S
+            AttributeType: N
         KeySchema:
           - AttributeName: journalId
             KeyType: HASH

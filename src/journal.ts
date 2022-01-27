@@ -2,7 +2,7 @@ import * as db from './db'
 
 export interface JournalEntry {
   journalId: string
-  timestamp: string
+  timestamp: number
   content: string
 }
 
