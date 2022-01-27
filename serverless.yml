@@ -9,6 +9,8 @@ provider:
   runtime: nodejs14.x
   lambdaHashingVersion: '20201221'
   architecture: arm64
+  httpApi:
+    cors: true
 
   environment:
     DYNAMODB_TABLE: '${self:service}-${sls:stage}'
@@ -38,18 +40,6 @@ functions:
       - httpApi:
           path: /entries
           method: post
-          cors:
-            origins:
-              - http://localhost:8000
-              - https://mystifying-meitner-662842.netlify.app
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-            allowCredentials: true
 
   getJournalEntries:
     handler: src/handler.getJournalEntries
