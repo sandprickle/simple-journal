@@ -41,7 +41,7 @@ functions:
           cors:
             origins:
               - http://localhost:8000
-              - https://journal.brycem.co
+              - https://mystifying-meitner-662842.netlify.app
             headers:
               - Content-Type
               - X-Amz-Date
