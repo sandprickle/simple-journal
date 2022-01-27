@@ -10,6 +10,8 @@ const httpResponse = (code: number, message: string): HttpResponse => {
     headers: {
       accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Credentials': 'true',
     },
     statusCode: code,
     body: message,
