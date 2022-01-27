@@ -39,17 +39,17 @@ functions:
           path: /entries
           method: post
           cors:
-          origins:
-            - http://localhost:8000
-            - https://journal.brycem.co
-          headers:
-            - Content-Type
-            - X-Amz-Date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-            - X-Amz-User-Agent
-          allowCredentials: false
+            origins:
+              - http://localhost:8000
+              - https://journal.brycem.co
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   getJournalEntries:
     handler: src/handler.getJournalEntries
