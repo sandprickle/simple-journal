@@ -41,12 +41,12 @@ functions:
           path: /entries
           method: post
 
-  getJournalEntries:
-    handler: src/handler.getJournalEntries
-    events:
-      - httpApi:
-          path: /entries
-          method: get
+  #getJournalEntries:
+  #handler: src/handler.getJournalEntries
+  #events:
+  #- httpApi:
+  #path: /entries
+  #method: get
 
 resources:
   Resources:
