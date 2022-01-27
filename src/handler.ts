@@ -22,7 +22,7 @@ const validateEntry = (entry: JournalEntry): Promise<JournalEntry> => {
   const journalEntrySchema = yup
     .object({
       journalId: yup.string().defined().min(3),
-      timestamp: yup.number().defined().integer().min(13).max(13),
+      timestamp: yup.number().defined().integer(),
       content: yup.string().defined(),
     })
     .noUnknown()
