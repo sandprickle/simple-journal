@@ -9,6 +9,7 @@ const httpResponse = (code: number, message: string): HttpResponse => {
   return {
     headers: {
       accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
     },
     statusCode: code,
     body: message,
